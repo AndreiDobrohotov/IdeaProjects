@@ -81,9 +81,9 @@ public class University {
         System.out.println();
 
         setGradeToStudentBySubject("Петров Петр","Физика",5);
-        setGradeToStudentBySubject("Петров Петр","Физика",5);
-        setGradeToStudentBySubject("Петров Петр","Физика",5);
-        setGradeToStudentBySubject("Петров Петр","Физика",5);
+        setGradeToStudentBySubject("Петров Петр","Физика",3);
+        setGradeToStudentBySubject("Петров Петр","Физика",2);
+        setGradeToStudentBySubject("Петров Петр","Физика",1);
         setGradeToStudentBySubject("Петров Петр","Сопромат",3);
         setGradeToStudentBySubject("Веселова Галина","Физика",5);
         setGradeToStudentBySubject("Веселова Галина","Сопромат",4);
@@ -194,8 +194,15 @@ public class University {
         if(tempStudent!=null){
             Subject tempSubject = tempStudent.getGroup().getSubjects().get(subjectName);
             if(tempSubject!=null){
-                tempStudent.getGrades().put(subjectName,grade);
-                System.out.println("Студент "+studentName+" получает оценку "+grade+" по дисциплине: "+ subjectName);
+                if(tempStudent.getGrades().containsKey(subjectName)){
+                    System.out.println("Студент "+studentName+ " уже получил оценку "
+                            +tempStudent.getGrades().get(subjectName)+" по дисциплине: "+ subjectName);
+                }
+                else{
+                    tempStudent.getGrades().put(subjectName,grade);
+                    System.out.println("Студент "+studentName+" получает оценку "+grade+" по дисциплине: "+ subjectName);
+                }
+
             }
             else System.out.println("Студент " + studentName + " не обучается на данной дисциплине");
         }
