@@ -81,17 +81,25 @@ public class University {
         System.out.println();
 
         setGradeToStudentBySubject("Петров Петр","Физика",5);
-        setGradeToStudentBySubject("Петров Петр","Математика",4);
+        setGradeToStudentBySubject("Петров Петр","Физика",5);
+        setGradeToStudentBySubject("Петров Петр","Физика",5);
+        setGradeToStudentBySubject("Петров Петр","Физика",5);
         setGradeToStudentBySubject("Петров Петр","Сопромат",3);
-        setGradeToStudentBySubject("Веселова Галина","Философия",5);
-        setGradeToStudentBySubject("Веселова Галина","Химия",4);
-        setGradeToStudentBySubject("Веселова Галина","История",3);
-        setGradeToStudentBySubject("Давыдов Алексей","Физика",5);
-        setGradeToStudentBySubject("Давыдов Алексей","Математика",4);
-        setGradeToStudentBySubject("Давыдов Алексей","Сопромат",3);
-        setGradeToStudentBySubject("Лавина Светлана","Философия",5);
-        setGradeToStudentBySubject("Лавина Светлана","Химия",4);
-        setGradeToStudentBySubject("Лавина Светлана","История",3);
+        setGradeToStudentBySubject("Веселова Галина","Физика",5);
+        setGradeToStudentBySubject("Веселова Галина","Сопромат",4);
+        setGradeToStudentBySubject("Таранов Тарас","Философия",3);
+        setGradeToStudentBySubject("Таранов Тарас","История",5);
+        setGradeToStudentBySubject("Давыдов Алексей","Философия",4);
+        setGradeToStudentBySubject("Давыдов Алексей","История",3);
+        setGradeToStudentBySubject("Лавина Светлана","Математика",5);
+        setGradeToStudentBySubject("Борисова Елена","Химия",4);
+        setGradeToStudentBySubject("Борисова Елена","Химия",3);
+        System.out.println();
+
+        printAllGradesOfAllStudentsByGroup("K-11");
+        System.out.println();
+
+        deleteGroup("K-11");
 
 
     }
@@ -189,7 +197,7 @@ public class University {
                 tempStudent.getGrades().put(subjectName,grade);
                 System.out.println("Студент "+studentName+" получает оценку "+grade+" по дисциплине: "+ subjectName);
             }
-            else System.out.println(SUBJECT_ERROR);
+            else System.out.println("Студент " + studentName + " не обучается на данной дисциплине");
         }
         else System.out.println(STUDENT_ERROR);
     }
@@ -197,11 +205,11 @@ public class University {
     public static void printAllGradesOfAllStudentsByGroup(String groupName){
         Group tempGroup = GROUPS.get(groupName);
         if(tempGroup!=null){
-            System.out.println("Оценки учеников из группы"+ groupName +":");
+            System.out.println("Оценки учеников из группы "+ groupName +":");
             for(Student student: tempGroup.getStudents().values()){
                 System.out.println(student.getName()+":");
                 for(Map.Entry<String,Integer> pair: student.getGrades().entrySet()){
-                    System.out.println("По дисциплине "+pair.getKey()+" - оценка "+pair.getKey());
+                    System.out.println("По дисциплине "+pair.getKey()+" оценка: "+pair.getValue());
                 }
             }
         }
@@ -222,7 +230,7 @@ public class University {
             }
 
         }
-        else System.out.println(STUDENT_ERROR);
+        else System.out.println(GROUP_ERROR);
     }
 
     public static void changeGradeToStudentBySubject(String studentName, String subjectName, Integer grade){
